@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'; // eslint-disable-line import/no-extraneous-dependencies
+import { useState, useEffect } from 'react';
 import { searchPixabayImages } from '../services/api/pixabayService';
 
 const usePixabayAPI = ( searchTerm, currentPage ) => {

@@ -1,4 +1,4 @@
-import { useState } from 'react'; // eslint-disable-line import/no-extraneous-dependencies
+import React, { useState } from 'react';
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import usePixabayAPI from './hooks/usePixabayAPI';

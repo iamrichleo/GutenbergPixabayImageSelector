@@ -1,3 +1,4 @@
+import React from 'react';
 import { useBlockProps } from '@wordpress/block-editor';
 
 const SaveComponent = ( { attributes } ) => {

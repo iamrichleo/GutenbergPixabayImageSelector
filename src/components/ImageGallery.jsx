@@ -1,3 +1,5 @@
+import React from 'react';
+
 const ImageGallery = ( { fetchedImages, handleImageSelect } ) => {
 	return (
 		<div className="image-gallery">

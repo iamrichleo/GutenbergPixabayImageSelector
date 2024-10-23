@@ -1,43 +1,64 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import ImageGallery from './ImageGallery'; // Adjust the import path if needed
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import ImageGallery from './ImageGallery';
 
 describe( 'ImageGallery', () => {
-	const mockHandleImageSelect = jest.fn(); // Mock function for handling image selection
 	const fetchedImages = [
-		{ id: 1, webformatURL: 'image1.jpg', tags: 'Image 1' },
-		{ id: 2, webformatURL: 'image2.jpg', tags: 'Image 2' },
+		{
+			id: 1,
+			webformatURL: 'https://example.com/image1.jpg',
+			tags: 'image 1',
+		},
+		{
+			id: 2,
+			webformatURL: 'https://example.com/image2.jpg',
+			tags: 'image 2',
+		},
 	];
 
-	beforeEach( () => {
-		render(
+	const handleImageSelect = jest.fn();
+
+	it( 'renders the correct number of images', () => {
+		const { getAllByRole } = render(
 			<ImageGallery
 				fetchedImages={ fetchedImages }
-				handleImageSelect={ mockHandleImageSelect }
+				handleImageSelect={ handleImageSelect }
 			/>
+		);
+
+		const imageButtons = getAllByRole( 'button' );
+		expect( imageButtons ).toHaveLength( fetchedImages.length );
+	} );
+
+	it( 'calls handleImageSelect with the correct URL when an image is clicked', () => {
+		const { getByLabelText } = render(
+			<ImageGallery
+				fetchedImages={ fetchedImages }
+				handleImageSelect={ handleImageSelect }
+			/>
+		);
+
+		const firstImageButton = getByLabelText( 'Select image image 1' );
+		fireEvent.click( firstImageButton );
+
+		expect( handleImageSelect ).toHaveBeenCalledWith(
+			'https://example.com/image1.jpg'
 		);
 	} );
 
-	it( 'renders the correct number of images', () => {
-		const images = screen.getAllByRole( 'img' ); // Select all image elements
-		expect( images ).toHaveLength( fetchedImages.length ); // Expect number of images to match fetchedImages
-	} );
+	it( 'displays the correct alt text for each image', () => {
+		const { getByAltText } = render(
+			<ImageGallery
+				fetchedImages={ fetchedImages }
+				handleImageSelect={ handleImageSelect }
+			/>
+		);
 
-	it( 'displays images with correct src and alt attributes', () => {
-		const images = screen.getAllByRole( 'img' );
-		images.forEach( ( img, index ) => {
-			expect( img ).toHaveAttribute(
-				'src',
-				fetchedImages[ index ].webformatURL
-			); // Check src
-			expect( img ).toHaveAttribute( 'alt', fetchedImages[ index ].tags ); // Check alt text
-		} );
-	} );
+		const firstImage = getByAltText( 'image 1' );
+		const secondImage = getByAltText( 'image 2' );
 
-	it( 'calls handleImageSelect when an image is clicked', () => {
-		const firstImage = screen.getByAltText( 'Image 1' ); // Get the first image by its alt text
-		fireEvent.click( firstImage ); // Simulate a click on the first image
-		expect( mockHandleImageSelect ).toHaveBeenCalledWith(
-			fetchedImages[ 0 ].webformatURL
-		); // Check if mock function was called with the correct URL
+		expect( firstImage ).toBeInTheDocument();
+		expect( secondImage ).toBeInTheDocument();
 	} );
 } );

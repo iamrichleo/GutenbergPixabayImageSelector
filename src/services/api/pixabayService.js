@@ -7,18 +7,10 @@ export const searchPixabayImages = async (
 	page = 1,
 	imagesPerPage = 20
 ) => {
-	const url = `https://pixabay.com/api/?key=${ PIXABAY_API_KEY }&q=${ encodeURIComponent(
-		query
-	) }&page=${ page }&per_page=${ imagesPerPage }`;
+	const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&page=${page}&per_page=${imagesPerPage}`;
 
-	try {
-		const response = await fetchRequest( url, {
-			method: 'GET',
-			responseType: 'json',
-		} );
-
-		return response;
-	} catch ( error ) {
-		throw error; // Re-throw the error to handle it in the calling code.
-	}
+	return await fetchRequest(url, {
+		method: 'GET',
+		responseType: 'json',
+	});
 };

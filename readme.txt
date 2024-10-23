@@ -1,5 +1,5 @@
 === Pixabay Image Selector ===
-Contributors: yourusername
+Contributors: Rich Leo
 Tags: pixabay, images, gallery, Gutenberg
 Requires at least: 5.0
 Tested up to: 5.9
@@ -8,22 +8,23 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-The Pixabay Image Selector is a Gutenberg block plugin that communicates with the Pixabay Developer API (https://pixabay.com/service/about/api/) to fetch images for selection in the block editor. Users can search for images by typing a query into the search field. Clicking on an image will select it, and clicking save will persist the selected image into the saved content.
+The **Pixabay Image Selector** is a Gutenberg block plugin that integrates with the [Pixabay Developer API](https://pixabay.com/service/about/api/) to fetch and select images directly within the block editor. Users can search for images by entering a query in the search field. Clicking on an image selects it, and clicking "Save" persists the selected image into the saved content.
 
-This plugin is designed for use in the WordPress Gutenberg block editor, providing a seamless experience for users looking to enhance their content with beautiful images from Pixabay.
+This plugin enhances the WordPress Gutenberg block editor by allowing users to easily find and incorporate stunning images from Pixabay into their content. It utilizes React as its rendering engine.
 
 == Installation ==
-1. Upload the plugin files to the `/wp-content/plugins/pixabay-image-selector` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
+1. Upload the plugin to your `/wp-content/plugins` directory.
+2. Activate the plugin through the **Plugins** screen in the WordPress Admin.
 
 == Development ==
-If you'd like to contribute or develop the plugin further:
+To contribute or further develop the plugin:
 1. Run `npm install` to download the necessary dependencies.
 2. Run `npm run build` to create a new build.
+3. Run `npm test` to execute Jest unit tests.
 
 == Frequently Asked Questions ==
 = How do I use this plugin? =
-Simply add the Pixabay Image Selector block in the Gutenberg editor, search for images, select your desired image, and save your changes.
+Add the **Pixabay Image Selector** block in the Gutenberg editor, search for images, select your desired image, and save your changes.
 
 == Changelog ==
 = 1.0.0 =
@@ -34,4 +35,4 @@ Simply add the Pixabay Image Selector block in the Gutenberg editor, search for 
 * Initial release of the plugin.
 
 == Support ==
-For support, visit the plugin's GitHub repository or support forum.
+For support, visit the plugin's [GitHub repository](https://github.com/iamrichleo/GutenbergPixabayImageSelector).
